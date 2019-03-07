@@ -53,11 +53,22 @@ public class USACO{
       }
     }
   }
+  private static int sum(){
+    int summation=0;
+    for (int a=0;a<R ;a++ ) {
+      for (int b=0;b<C ;b++ ) {
+          if(map[a][b]>0){
+            summation+=map[a][b];
+          }
+      }
+    }
+    return summation;
+  }
   public static int bronze(String filename){
     for (int i=0;i<instructions.length/3;i++ ) {
       stomp(instructions[i],instructions[i+1],instructions[i+2]);
     }
-    return 5;
+    depths();
+    return sum()*72*72;
   }
-
 }
