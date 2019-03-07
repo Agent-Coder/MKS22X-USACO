@@ -7,7 +7,7 @@ public class USACO{
   private static int N;
   private static int[][] map;
   private static int[] instructions;
-  private void bronzeFile(String filename)throws FileNotFoundException{
+  private static void bronzeFile(String filename)throws FileNotFoundException{
     File text = new File("Maze.txt");
     Scanner inf = new Scanner(text);
     String[] one=inf.nextLine().split(" ",-1);
@@ -46,13 +46,10 @@ public class USACO{
     }
 
   }
-  private void depths(){
-    int highest=0;
+  private static void depths(){
     for (int a=0;a<R ;a++ ) {
       for (int b=0;b<C ;b++ ) {
-        if(map[a][b]>highest){
-          highest=map[a][b];
-        }
+          map[a][b]=E-map[a][b];
       }
     }
   }
