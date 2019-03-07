@@ -1,12 +1,12 @@
 import java.util.*;
 import java.io.*;
 public class USACO{
-  private int R;
-  private int C;
-  private int E;
-  private int N;
-  private int[][] map;
-  private int[] instructions;
+  private static int R;
+  private static int C;
+  private static int E;
+  private static int N;
+  private static int[][] map;
+  private static int[] instructions;
   private void bronzeFile(String filename)throws FileNotFoundException{
     File text = new File("Maze.txt");
     Scanner inf = new Scanner(text);
@@ -29,7 +29,38 @@ public class USACO{
       }
     }
   }
+  private static void stomp(int r, int c, int e){
+    int highest=0;;
+    for (int a=r;a<r+3 ;a++ ) {
+      for (int b=c;b<c+3 ;b++ ) {
+        if(map[a][b]>highest){
+          highest=map[a][b];
+        }
+      }
+    }
+    highest=highest-e;
+    for (int a=r;a<r+3 ;a++ ) {
+      for (int b=c;b<c+3 ;b++ ) {
+        map[a][b]=highest;
+      }
+    }
+
+  }
+  private void depths(){
+    int highest=0;
+    for (int a=0;a<R ;a++ ) {
+      for (int b=0;b<C ;b++ ) {
+        if(map[a][b]>highest){
+          highest=map[a][b];
+        }
+      }
+    }
+  }
   public static int bronze(String filename){
+    for (int i=0;i<instructions.length/3;i++ ) {
+      stomp(instructions[i],instructions[i+1],instructions[i+2]);
+    }
     return 5;
   }
+
 }
