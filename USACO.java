@@ -48,17 +48,18 @@ public class USACO{
     for (int a=r-1;a<r+2 ;a++ ) {
       //System.out.print("\n");
       for (int b=c-1;b<c+2 ;b++ ) {
-        //System.out.print(map[a][b]+" ");
-        map[a][b]=highest;
+        if(map[a][b]>highest){
+          map[a][b]=highest;
+        }
       }
     }
 
   }
   private static void depths(){
     for (int a=0;a<R ;a++ ) {
-      System.out.print("\n");
+      //System.out.print("\n");
       for (int b=0;b<C ;b++ ) {
-        System.out.print(map[a][b]+" ");
+        //System.out.print(map[a][b]+" ");
           map[a][b]=E-map[a][b];
 
       }
@@ -82,14 +83,30 @@ public class USACO{
     for (int i=0;i<instructions.length/3;i++ ) {
       //System.out.println(instructions[3*i]+","+instructions[3*i+1]+","+instructions[3*i+2]);
       stomp(instructions[3*i],instructions[3*i+1],instructions[3*i+2]);
+      System.out.println(printing());
     }
     depths();
+    System.out.println(printing());
     //System.out.println(sum());
     return sum()*72*72;
   }
+  private static String printing(){
+    String s="";
+    for (int a=0;a<R ;a++ ) {
+        s+="\n";
+      for (int b=0;b<C ;b++ ) {
+        s+=map[a][b]+" ";
+      }
+    }
+    return s;
+  }
   public static void main(String[] args) {
     try{
-    System.out.println(bronze("Sample.txt"));
+    System.out.println(bronze("makelake.1.in"));
+    //System.out.println(bronze("makelake.2.in"));
+    //System.out.println(bronze("makelake.3.in"));
+    //System.out.println(bronze("makelake.4.in"));
+    //System.out.println(bronze("makelake.5.in"));
   }
   catch(FileNotFoundException e){
     System.out.println("file not found");
