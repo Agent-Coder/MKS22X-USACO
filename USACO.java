@@ -83,10 +83,10 @@ public class USACO{
     for (int i=0;i<instructions.length/3;i++ ) {
       //System.out.println(instructions[3*i]+","+instructions[3*i+1]+","+instructions[3*i+2]);
       stomp(instructions[3*i],instructions[3*i+1],instructions[3*i+2]);
-      System.out.println(printing());
+      //System.out.println(printing());
     }
     depths();
-    System.out.println(printing());
+    //System.out.println(printing());
     //System.out.println(sum());
     return sum()*72*72;
   }
@@ -100,16 +100,21 @@ public class USACO{
     }
     return s;
   }
-  public static void main(String[] args) {
+/*  public static void main(String[] args) {
     try{
     System.out.println(bronze("makelake.1.in"));
-    //System.out.println(bronze("makelake.2.in"));
-    //System.out.println(bronze("makelake.3.in"));
-    //System.out.println(bronze("makelake.4.in"));
-    //System.out.println(bronze("makelake.5.in"));
+    System.out.println("342144");
+    System.out.println(bronze("makelake.2.in"));
+    System.out.println("102762432");
+    System.out.println(bronze("makelake.3.in"));
+    System.out.println("1058992704");
+    System.out.println(bronze("makelake.4.in"));
+    System.out.println("753121152");
+    System.out.println(bronze("makelake.5.in"));
+    System.out.println("1028282688");
   }
   catch(FileNotFoundException e){
     System.out.println("file not found");
   }
-  }
+}*/
 }
