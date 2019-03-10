@@ -102,7 +102,7 @@ public class USACO{
   }
 //----------------------------------------------------------------------------------------------------
   private static String[][] pathway;
-  private static int[][] chances;
+  private static int[][] nextMove;
   private static int row;
   private static int col;
   private static int time;
@@ -116,10 +116,16 @@ public class USACO{
     col=Integer.parseInt(one[1]);
     time=Integer.parseInt(one[2]);
     int j=0;
+    pathway= new int[row][col];
+    nextMove= new int[row][col];
     while(inf.hasNextLine()){
       one=inf.nextLine().split("",-1);
       for (int i=0;i<col;i++){
-          pathway[i][j]=one[i];
+        if(one[i]=="*"){
+          pathway[i][j]=-1;
+        }
+        else{
+          pathway[i][j]=0;
         }
       j++;
     }
@@ -130,6 +136,41 @@ public class USACO{
     startCor[1]=Integer.parseInt(one[1]);
     endCor[0]=Integer.parseInt(one[2]);
     endCor[1]=Integer.parseInt(one[3]);
+  }
+  private static void setup(){
+    for(int i=0;i<row;i++){
+      for(int j=0;j<col;j++){
+        if(pathway[i][j]=="*"){
+          nextMove[i][j]="-1";
+        }
+        else{
+          nextMove[i][j]="0";
+        }
+      }
+      nextMove[startCor[0]][startCor[1]]=1;
+  }
+  private static void calculations(int steps,int srow,int scol,int frow,int fcol){
+    int[] moves={1,0,-1,0,0,1,0,-1};
+    for(int i=0;i<row;i++){
+      for(int j=0;j<col;j++){
+          if(i==frow&&j==fcol){
+            if()
+          }
+      }
+    }
+    int[] moves={1,0,-1,0,0,1,0,-1};
+    int currentr=srow;
+    int currentc=scol;
+    if(srow+1<row&&pathways[srow+1][srow-1]){}
+    if(srow-1>=0){}
+    while(steps>0){
+      if(pathway[currentr][currentc]=="."){
+        for(int i=0;i;i++){
+
+        }
+      }
+      steps--;
+    }
   }
   public static int silver(String filename) throws FileNotFoundException{
     silverfile(filename);
