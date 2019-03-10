@@ -144,15 +144,14 @@ public class USACO{
     endCor[1]=Integer.parseInt(one[3]);
   }
 }
-  private static int calculations(){
-    int[] moves={1,0,-1,0,0,1,0,-1};
+  private static int calculations(int[] m){
     while(time>0){
       for(int i=0;i<row;i++){
         for(int j=0;j<col;j++){
             if(pathway[i][j]!=-1){
-              for(int x=0;x<moves.length/2;x++){
+              for(int x=0;x<m.length/2;x++){
                 if(i+2*x>=0&&i+2*x<row&&i+(2*x+1)>=0&&i+(2*x+1)<col){
-                  nextMove[i][j]+=pathway[i+2*x][2*x+1];
+                  nextMove[i][j]+=pathway[i+m[2*x]][i+m[(2*x+1)]];
                 }
               }
             }
@@ -171,24 +170,31 @@ public class USACO{
       return pathway[endCor[0]][endCor[1]];
     }
 
-/*  public static int silver(String filename) throws FileNotFoundException{
+  public static int silver(String filename) throws FileNotFoundException{
+    int[] moves={1,0,-1,0,0,1,0,-1};
+    for(int x=0;x<moves.length/2;x++){
+      if(startCor[0]+2*x>=0&&startCor[0]+2*x<row&&startCor[1]+(2*x+1)>=0&&startCor[1]+(2*x+1)<col){
+        pathway[startCor[0]+moves[2*x]][startCor[0]+moves[2*x+1]]=1;
+      }
+    }
     silverFile(filename);
+    return calculations(moves);
   }
   public static void main(String[] args) {
     try{
-    System.out.println(bronze("makelake.1.in"));
-    System.out.println("342144");
-    System.out.println(bronze("makelake.2.in"));
-    System.out.println("102762432");
-    System.out.println(bronze("makelake.3.in"));
-    System.out.println("1058992704");
-    System.out.println(bronze("makelake.4.in"));
-    System.out.println("753121152");
-    System.out.println(bronze("makelake.5.in"));
-    System.out.println("1028282688");
+    System.out.println(bronze("ctravel.1.in"));
+    System.out.println("1");
+    System.out.println(bronze("ctravel.2.in"));
+    System.out.println("74");
+    System.out.println(bronze("ctravel.3.in"));
+    System.out.println("6435");
+    System.out.println(bronze("ctravel.4.in"));
+    System.out.println("339246");
+    System.out.println(bronze("ctravel.5.in"));
+    System.out.println("0");
   }
   catch(FileNotFoundException e){
     System.out.println("file not found");
   }
-}*/
+}
 }
