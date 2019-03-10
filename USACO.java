@@ -101,7 +101,7 @@ public class USACO{
     return s;
   }
 //----------------------------------------------------------------------------------------------------
-  private static String[][] pathway;
+  private static int[][] pathway;
   private static int[][] nextMove;
   private static int row;
   private static int col;
@@ -123,15 +123,15 @@ public class USACO{
       for (int i=0;i<col;i++){
         if(i==endCor[0]&&j==endCor[1]){
           pathway[i][j]=1;
-          chances[i][j]=0;
+          nextMove[i][j]=0;
         }
         else if(one[i]=="*"){
           pathway[i][j]=-1;
-          chances[i][j]=-1;
+          nextMove[i][j]=-1;
         }
         else{
           pathway[i][j]=0;
-          chances[i][j]=0
+          nextMove[i][j]=0;
         }
       j++;
     }
@@ -143,7 +143,8 @@ public class USACO{
     endCor[0]=Integer.parseInt(one[2]);
     endCor[1]=Integer.parseInt(one[3]);
   }
-  private static void calculations(){
+}
+  private static int calculations(){
     int[] moves={1,0,-1,0,0,1,0,-1};
     while(time>0){
       for(int i=0;i<row;i++){
@@ -151,7 +152,7 @@ public class USACO{
             if(pathway[i][j]!=-1){
               for(int x=0;x<moves.length/2;x++){
                 if(i+2*x>=0&&i+2*x<row&&i+(2*x+1)>=0&&i+(2*x+1)<col){
-                  chances[i][j]+=pathway[i+2*x][2*x+1];
+                  nextMove[i][j]+=pathway[i+2*x][2*x+1];
                 }
               }
             }
@@ -159,9 +160,9 @@ public class USACO{
         }
         for (int a=0;a<row ;a++ ) {
           for (int b=0;b<col;b++ ){
-            pathway[a][b]=chances[a][b];
-            if(chances[a][b]!=-1){
-              chances[a][b]=0;
+            pathway[a][b]=nextMove[a][b];
+            if(nextMove[a][b]!=-1){
+              nextMove[a][b]=0;
             }
           }
         }
@@ -169,24 +170,11 @@ public class USACO{
       }
       return pathway[endCor[0]][endCor[1]];
     }
-    int[] moves={1,0,-1,0,0,1,0,-1};
-    int currentr=srow;
-    int currentc=scol;
-    if(srow+1<row&&pathways[srow+1][srow-1]){}
-    if(srow-1>=0){}
-    while(steps>0){
-      if(pathway[currentr][currentc]=="."){
-        for(int i=0;i;i++){
 
-        }
-      }
-      steps--;
-    }
+/*  public static int silver(String filename) throws FileNotFoundException{
+    silverFile(filename);
   }
-  public static int silver(String filename) throws FileNotFoundException{
-    silverfile(filename);
-  }
-/*  public static void main(String[] args) {
+  public static void main(String[] args) {
     try{
     System.out.println(bronze("makelake.1.in"));
     System.out.println("342144");
