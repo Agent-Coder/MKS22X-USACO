@@ -115,41 +115,53 @@ public class USACO{
     row=Integer.parseInt(one[0]);
     col=Integer.parseInt(one[1]);
     time=Integer.parseInt(one[2]);
-    int j=0;
+    int i=0;
     pathway= new int[row][col];
     nextMove= new int[row][col];
-    while(inf.hasNextLine()){
+    while(i<row){
       one=inf.nextLine().split("",-1);
-      for (int i=0;i<col;i++){
-        if(i==endCor[0]&&j==endCor[1]){
-          pathway[i][j]=1;
-          nextMove[i][j]=0;
-        }
-        else if(one[i]=="*"){
+      for (int j=0;j<col;j++){
+        //System.out.println("i"+i);
+        //System.out.println(j);
+        if(one[j]=="*"){
           pathway[i][j]=-1;
           nextMove[i][j]=-1;
         }
         else{
+          //System.out.println("ii"+pathway.length);
+          //System.out.println(pathway[0].length);
+          //System.out.println("hi");
           pathway[i][j]=0;
           nextMove[i][j]=0;
         }
-      j++;
-    }
+      }
+    i++;
+  }
     startCor=new int[2];
     endCor=new int[2];
     one=inf.nextLine().split(" ",-1);
-    startCor[0]=Integer.parseInt(one[0]);
-    startCor[1]=Integer.parseInt(one[1]);
-    endCor[0]=Integer.parseInt(one[2]);
-    endCor[1]=Integer.parseInt(one[3]);
-    System.out.println(startCor[0]);
-    System.out.println(startCor[1]);
+    startCor[0]=Integer.parseInt(one[0])-1;
+    startCor[1]=Integer.parseInt(one[1])-1;
+    endCor[0]=Integer.parseInt(one[2])-1;
+    endCor[1]=Integer.parseInt(one[3])-1;
+    //System.out.println(startCor[0]);
+    //System.out.println(startCor[1]);
+}
+private static String printing(int[][] board){
+  String s="";
+  for(int i=0;i<row;i++){
+    s+="\n";
+    for(int j=0;j<col;j++){
+      s+=board[i][j]+" ";
+    }
   }
 }
   private static int calculations(int[] m){
     while(time>0){
       for(int i=0;i<row;i++){
         for(int j=0;j<col;j++){
+          printing(pathway);
+          printing(chances);
             if(pathway[i][j]!=-1){
               for(int x=0;x<m.length/2;x++){
                 if(i+m[2*x]>=0&&i+m[2*x]<row&&j+m[(2*x+1)]>=0&&j+m[(2*x+1)]<col){
@@ -174,12 +186,12 @@ public class USACO{
 
   public static int silver(String filename) throws FileNotFoundException{
     int[] moves={1,0,-1,0,0,1,0,-1};
+    silverFile(filename);
     for(int x=0;x<moves.length/2;x++){
       if(startCor[0]+moves[2*x]>=0&&startCor[0]+moves[2*x]<row&&startCor[1]+moves[(2*x+1)]>=0&&startCor[1]+moves[(2*x+1)]<col){
         pathway[startCor[0]+moves[2*x]][startCor[1]+moves[2*x+1]]=1;
       }
     }
-    silverFile(filename);
     return calculations(moves);
   }
   public static void main(String[] args) {
