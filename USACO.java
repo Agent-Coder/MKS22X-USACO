@@ -100,6 +100,40 @@ public class USACO{
     }
     return s;
   }
+//----------------------------------------------------------------------------------------------------
+  private static String[][] pathway;
+  private static int[][] chances;
+  private static int row;
+  private static int col;
+  private static int time;
+  private static int[] startCor;
+  private static int[] endCor;
+  private static void silverFile(String filename)throws FileNotFoundException{
+    File text= new File(filename);
+    Scanner inf=new Scanner(text);
+    String[] one=inf.nextLine().split(" ",-1);
+    row=Integer.parseInt(one[0]);
+    col=Integer.parseInt(one[1]);
+    time=Integer.parseInt(one[2]);
+    int j=0;
+    while(inf.hasNextLine()){
+      one=inf.nextLine().split("",-1);
+      for (int i=0;i<col;i++){
+          pathway[i][j]=one[i];
+        }
+      j++;
+    }
+    startCor=new int[2];
+    endCor=new int[2];
+    one=inf.nextLine().split(" ",-1);
+    startCor[0]=Integer.parseInt(one[0]);
+    startCor[1]=Integer.parseInt(one[1]);
+    endCor[0]=Integer.parseInt(one[2]);
+    endCor[1]=Integer.parseInt(one[3]);
+  }
+  public static int silver(String filename) throws FileNotFoundException{
+    silverfile(filename);
+  }
 /*  public static void main(String[] args) {
     try{
     System.out.println(bronze("makelake.1.in"));
