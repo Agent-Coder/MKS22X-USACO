@@ -121,11 +121,17 @@ public class USACO{
     while(inf.hasNextLine()){
       one=inf.nextLine().split("",-1);
       for (int i=0;i<col;i++){
-        if(one[i]=="*"){
+        if(i==endCor[0]&&j==endCor[1]){
+          pathway[i][j]=1;
+          chances[i][j]=0;
+        }
+        else if(one[i]=="*"){
           pathway[i][j]=-1;
+          chances[i][j]=-1;
         }
         else{
           pathway[i][j]=0;
+          chances[i][j]=0
         }
       j++;
     }
@@ -137,26 +143,31 @@ public class USACO{
     endCor[0]=Integer.parseInt(one[2]);
     endCor[1]=Integer.parseInt(one[3]);
   }
-  private static void setup(){
-    for(int i=0;i<row;i++){
-      for(int j=0;j<col;j++){
-        if(pathway[i][j]=="*"){
-          nextMove[i][j]="-1";
-        }
-        else{
-          nextMove[i][j]="0";
-        }
-      }
-      nextMove[startCor[0]][startCor[1]]=1;
-  }
-  private static void calculations(int steps,int srow,int scol,int frow,int fcol){
+  private static void calculations(){
     int[] moves={1,0,-1,0,0,1,0,-1};
-    for(int i=0;i<row;i++){
-      for(int j=0;j<col;j++){
-          if(i==frow&&j==fcol){
-            if()
+    while(time>0){
+      for(int i=0;i<row;i++){
+        for(int j=0;j<col;j++){
+            if(pathway[i][j]!=-1){
+              for(int x=0;x<moves.length/2;x++){
+                if(i+2*x>=0&&i+2*x<row&&i+(2*x+1)>=0&&i+(2*x+1)<col){
+                  chances[i][j]+=pathway[i+2*x][2*x+1];
+                }
+              }
+            }
           }
+        }
+        for (int a=0;a<row ;a++ ) {
+          for (int b=0;b<col;b++ ){
+            pathway[a][b]=chances[a][b];
+            if(chances[a][b]!=-1){
+              chances[a][b]=0;
+            }
+          }
+        }
+        time--;
       }
+      return pathway[endCor[0]][endCor[1]];
     }
     int[] moves={1,0,-1,0,0,1,0,-1};
     int currentr=srow;
