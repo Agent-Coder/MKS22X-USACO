@@ -121,22 +121,18 @@ public class USACO{
     while(i<row){
       one=inf.nextLine().split("",-1);
       for (int j=0;j<col;j++){
-        //System.out.println("i"+i);
-        //System.out.println(j);
-        if(one[j]=="*"){
+        if(one[j].equals("*")){
           pathway[i][j]=-1;
           nextMove[i][j]=-1;
         }
         else{
-          //System.out.println("ii"+pathway.length);
-          //System.out.println(pathway[0].length);
-          //System.out.println("hi");
           pathway[i][j]=0;
           nextMove[i][j]=0;
         }
       }
     i++;
   }
+  System.out.println(printing(pathway));
     startCor=new int[2];
     endCor=new int[2];
     one=inf.nextLine().split(" ",-1);
