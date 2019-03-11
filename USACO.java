@@ -132,7 +132,7 @@ public class USACO{
       }
     i++;
   }
-  System.out.println(printing(pathway));
+  //System.out.println(printing(pathway));
     startCor=new int[2];
     endCor=new int[2];
     one=inf.nextLine().split(" ",-1);
@@ -154,16 +154,18 @@ private static String printing(int[][] board){
   return s;
 }
   private static int calculations(int[] m){
-    while(time>0){
-      System.out.println("p"+printing(pathway));
-      System.out.println("n"+printing(nextMove));
+    int k=time;
+    while(time>=0){
+      //System.out.println("p"+printing(pathway));
+      //System.out.println("n"+printing(nextMove));
+      //System.out.println(k-time);
       for(int i=0;i<row;i++){
         for(int j=0;j<col;j++){
 
             if(pathway[i][j]!=-1){
 
               for(int x=0;x<m.length/2;x++){
-                if(i+m[2*x]>=0&&i+m[2*x]<row&&j+m[(2*x+1)]>=0&&j+m[(2*x+1)]<col){
+                if(i+m[2*x]>=0&&i+m[2*x]<row&&j+m[(2*x+1)]>=0&&j+m[(2*x+1)]<col&&pathway[i+m[2*x]][j+m[(2*x+1)]]!=-1){
                   nextMove[i][j]+=pathway[i+m[2*x]][j+m[(2*x+1)]];
                 }
               }
@@ -195,14 +197,14 @@ private static String printing(int[][] board){
     try{
     System.out.println(silver("ctravel.1.in"));
     System.out.println("Answer:1");
-    /*System.out.println(silver("ctravel.2.in"));
+    System.out.println(silver("ctravel.2.in"));
     System.out.println("74");
     System.out.println(silver("ctravel.3.in"));
     System.out.println("6435");
     System.out.println(silver("ctravel.4.in"));
     System.out.println("339246");
     System.out.println(silver("ctravel.5.in"));
-    System.out.println("0");*/
+    System.out.println("0");
   }
   catch(FileNotFoundException e){
     System.out.println("file not found");
